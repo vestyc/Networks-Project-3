@@ -65,10 +65,6 @@ while(True):
              
         #print ('Data : ' + data.strip().decode('utf-8'))
 
-
-        # disabled promiscuous mode
-        s.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
-
     elif protocol == 17:
         udp_header = packet[iph_length:iph_length+8]
         udph = struct.unpack('!HHHH', udp_header);
@@ -81,3 +77,5 @@ while(True):
 
         print("UDP")
         print('Source Port: ' + str(source_port) + ' Dest Port : ' + str(dest_port) + ' Length: ' + str(length) + ' Checksum : ' + str(checksum))
+
+    
