@@ -38,8 +38,9 @@ while(True):
     s_addr = socket.inet_ntoa(iph[8]);
     d_addr = socket.inet_ntoa(iph[9]);
          
-    #print ("IP")     
-    #print ('Version : ' + str(version) + ' IP Header Length : ' + str(ihl) + ' TTL : ' + str(ttl) + ' Protocol : ' + str(protocol) + ' Source Address : ' + str(s_addr) + ' Destination Address : ' + str(d_addr))
+    #print ("IP")
+    ip_output = 'Version : ' + str(version) + ' IP Header Length : ' + str(ihl) + ' TTL : ' + str(ttl) + ' Protocol : ' + str(protocol) + ' Source Address : ' + str(s_addr) + ' Destination Address : ' + str(d_addr)
+    print (ip_output)
 
     if protocol == 6:
         tcp_header = packet[iph_length:iph_length+20]
@@ -54,8 +55,9 @@ while(True):
         doff_reserved = tcph[4]
         tcph_length = doff_reserved >> 4
              
-        #print("TCP")     
-        #print ('Source Port : ' + str(source_port) + ' Dest Port : ' + str(dest_port) + ' Sequence Number : ' + str(sequence) + ' Acknowledgement : ' + str(acknowledgement) + ' TCP header length : ' + str(tcph_length))
+        #print("TCP")
+        #tcp_output = 'Source Port : ' + str(source_port) + ' Dest Port : ' + str(dest_port) + ' Sequence Number : ' + str(sequence) + ' Acknowledgement : ' + str(acknowledgement) + ' TCP header length : ' + str(tcph_length)
+        #print(tcp_output)        
             
         h_size = iph_length + tcph_length * 4
         data_size = len(packet) - h_size
@@ -80,7 +82,8 @@ while(True):
         checksum = udph[3]
 
         #print("UDP")
-        #print('Source Port: ' + str(source_port) + ' Dest Port : ' + str(dest_port) + ' Length: ' + str(length) + ' Checksum : ' + str(checksum))
+        #udp_output = 'Source Port: ' + str(source_port) + ' Dest Port : ' + str(dest_port) + ' Length: ' + str(length) + ' Checksum : ' + str(checksum)
+        #print(udp_output)
 
     elif protocol == 1:
         icmp_header = packet[iph_length:iph_length+8]
@@ -94,6 +97,5 @@ while(True):
         icmp_seqnum = icmph[4]
 
         #print("ICMP")
-        #print('Type: ' + str(icmp_type) + ' Code: ' + str(icmp_code) + ' Checksum: ' + str(icmp_checksum))
-        #print('Identifier: ' + str(icmp_identifier) + ' Sequence Number: ' + str(icmp_seqnum))
-        
+        #icmp_output = 'Type: ' + str(icmp_type) + ' Code: ' + str(icmp_code) + ' Checksum: ' + str(icmp_checksum)
+        #icmp_output = icmp_output + 'Identifier: ' + str(icmp_identifier) + ' Sequence Number: ' + str(icmp_seqnum)        
